@@ -15,6 +15,11 @@
 
 ## 프로젝트 구성
 
+`Instagram`
+
+- `articles`
+- `accounts`
+
 ```bash
 ~/ $django-admin startproject instagram
 ~/instagram $python manage.py startapp articles
@@ -22,15 +27,6 @@
 ```
 
 > `App` 이름은 복수형 
-
-
-
-`Instagram`
-
-- `articles`
-- `accounts`
-
-
 
 
 
@@ -130,6 +126,7 @@ URL_patterns =[
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
+
 def index(request):
     accounts = User.objects.all()
     context={
