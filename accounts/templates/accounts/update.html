@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% load bootstrap4 %}
+{% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button class="btn btn-primary">수정</button>
+    </form>
+    <a href="{% url 'accounts:password_change' %}">비번</a>
+{% endblock %}
