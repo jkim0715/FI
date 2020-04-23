@@ -6,7 +6,7 @@
 
 ## 기능
 
-- 회원가입 / 로그인 / 로그아웃
+- 회원가입 / 로그인 / 로그아웃 / 마이페이지 /비밀번호 변경 (hash)
 - 게시물 작성 / 수정 / 삭제 
 - Alert 안내 메시지 (django message framework.fresh message)
   - "one-time notification message" : 새로고침하면 없어짐
