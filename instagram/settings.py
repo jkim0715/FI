@@ -125,4 +125,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
+
+# 미디어 파일 저장경로 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+
+#커스텀 유저 모델 세팅
 AUTH_USER_MODEL='accounts.User'

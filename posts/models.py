@@ -6,13 +6,14 @@ from django.conf import settings
 # Create your models here.
 class Post(models.Model):
     content = models.TextField()
+    image=models.ImageField()
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) 
     created_at = models.DateTimeField(auto_now_add=True)
     created_at = models.DateTimeField(auto_now =True)
     
 
 class Comment(models.Model):
-    content = models.models.CharField( max_length=300)
+    content = models.CharField( max_length=300)
     created_at = models.DateTimeField(auto_now_add=True)
     created_at = models.DateTimeField(auto_now =True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) 
