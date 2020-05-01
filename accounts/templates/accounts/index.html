@@ -17,7 +17,17 @@
     {{account.first_name}}
     {{account.last_name}}
     <br>
-
+{% empty %}
+    <h1>없음</h1>
 {% endfor %}
+
+{% for post in posts %}
+    {{post.content}}
+    <img src="{{ post.image.url }}">
+{% empty %}
+    <h1>없음</h1>
+{% endfor %}
+
+<a href="{% url 'posts:create' %}"> 글쓰기</a>
 
 {% endblock content %}

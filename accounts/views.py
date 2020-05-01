@@ -12,13 +12,17 @@ from django.views.decorators.http import require_POST
 
 from .forms import CustomUserChangeForm, CustomUserCreationForm
 
+from posts.models import Post
+
 User = get_user_model() # 유저 Import
 
 # Create your views here.
 def index(request):
     accounts = User.objects.all()
+    posts = Post.objects.all()
     context ={
-       'accounts': accounts 
+       'accounts': accounts,
+       'posts': posts
     }
     return render(request, 'accounts/index.html',context)
 
@@ -57,8 +61,6 @@ def login(request):
 def logout(request):
     auth_logout(request)
     return redirect('accounts:index')
-
-
 
 @login_required
 @require_POST
