@@ -13,6 +13,7 @@ from django.views.decorators.http import require_POST
 from .forms import CustomUserChangeForm, CustomUserCreationForm
 
 from posts.models import Post
+from posts.forms import CommentForm
 
 User = get_user_model() # 유저 Import
 
@@ -20,9 +21,11 @@ User = get_user_model() # 유저 Import
 def index(request):
     accounts = User.objects.all()
     posts = Post.objects.all()
+    commentform = CommentForm()
     context ={
        'accounts': accounts,
-       'posts': posts
+       'posts': posts,
+       'commentform':commentform
     }
     return render(request, 'accounts/index.html',context)
 

@@ -1,6 +1,40 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h1>시작페이지</h1>
+<div class='row'>
+    
+    <div class='col-md-8'>
+        {% for post in posts %}
+            <div class='mt-5'>
+                <p>{{post.user.username}}</p>
+            </div>
+            <img src="{{ post.image_thumbnail.url }}">
+            <p>{{post.content}}</p>
+            <a href="{% url 'posts:update' post.id %}">디테일</a>
+            <br>
+            {% for comment in post.comment_set.all %}
+                {{comment.user}} : {{comment.content}}
+            {% empty%} 
+                <p>없음</p> 
+            {% endfor %}
+            <form action="{% url 'posts:createcomment' post.id %}" method="POST">
+            {% csrf_token %}
+                {{commentform}}
+                <button>제출</button>
+            </form>
+        {% empty %}
+            <h1>없음</h1>
+        {% endfor %}
+    </div>
+    
+    
+    <div class='col-md-4'>
+
+    </div>
+
+</div>
+
 {% if messages %}
 <ul class="messages">
     {% for message in messages %}
@@ -10,7 +44,7 @@
 {% endif %}
 
 
-<h1>시작페이지</h1>
+
 {% for account in accounts %}
     {{account.id}} : {{account.username}}
     <br>
@@ -21,13 +55,7 @@
     <h1>없음</h1>
 {% endfor %}
 
-{% for post in posts %}
-    {{post.content}}
-    <img src="{{ post.image.url }}">
-    <img src="{{ post.image_thumnail.url }}">
-{% empty %}
-    <h1>없음</h1>
-{% endfor %}
+
 
 <a href="{% url 'posts:create' %}"> 글쓰기</a>
 

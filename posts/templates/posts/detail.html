@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 
-{% block content %}
 
-<form action=""  method="POST" enctype="multipart/form-data">
+
+{% block content %}
+<form action="" method="POST" enctype="multipart/form-data">
 {% csrf_token %}
     {%bootstrap_form form%}
-    <button>제출</button>
+    <button>Edit</button>
 </form>
-
 {% endblock content %}
