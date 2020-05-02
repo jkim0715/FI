@@ -20,7 +20,7 @@ def create(request):
     return render(request, 'posts/form.html',context)
 
 def update(request,post_id):
-
+    
     return ''
 
 

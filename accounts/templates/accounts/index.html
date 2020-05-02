@@ -24,6 +24,7 @@
 {% for post in posts %}
     {{post.content}}
     <img src="{{ post.image.url }}">
+    <img src="{{ post.image_thumnail.url }}">
 {% empty %}
     <h1>없음</h1>
 {% endfor %}
