@@ -84,7 +84,7 @@ def update(request):
     }
     return render(request, 'accounts/update.html', context)
 
-
+@login_required
 def password_change(request):
     if request.method == "POST":
         form = PasswordChangeForm(user = request.user, data=request.POST)
@@ -100,7 +100,7 @@ def password_change(request):
     }
     return render(request,'accounts/update.html',context)
 
-
+@login_required
 def follow(request, user_pk):
     user = get_object_or_404(User, pk=user_pk)
     if request.user == user:
@@ -110,6 +110,6 @@ def follow(request, user_pk):
             user.followers.remove(request.user)
         else:
             user.followers.add(request.user)
-        
+
         
         return redirect('accounts:index')
