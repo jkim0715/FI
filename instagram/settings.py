@@ -133,3 +133,6 @@ MEDIA_URL = '/media/'
 
 #커스텀 유저 모델 세팅
 AUTH_USER_MODEL='accounts.User'
+
+#Shell
+SHELL_PLUS = "ipython"

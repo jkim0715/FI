@@ -5,7 +5,7 @@ class PostForm(ModelForm):
     class Meta:
         model = Post
         fields ='__all__'
-        exclude=["user"]
+        exclude=["user","like_user"]
 
 class CommentForm(ModelForm):
     class Meta:

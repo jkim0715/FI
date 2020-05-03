@@ -60,3 +60,12 @@ def createcomment(request, post_id):
         messages.warning(request, '댓글작성을 위해서는 로그인 필요합니다')
         return redirect('accounts:login')
         # return HttpResponse(status=401)
+
+def like(request, post_id):
+    post = get_object_or_404(Post,id=post_id)
+    if request.user.is_authenticated:
+        if post.like_user.filter(pk=request.user.id).exists():
+            post.like_user.remove(request.user)
+        else:
+            post.like_user.add(request.user)
+    return redirect('accounts:index')

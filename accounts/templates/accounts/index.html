@@ -18,6 +18,12 @@
             {% empty%} 
                 <p>없음</p> 
             {% endfor %}
+
+            {% if request.user in post.like_user.all %}
+            <div> <a href="{% url 'posts:like' post.id %}">좋아요 취소</a></div>
+            {% else %}
+            <div> <a href="{% url 'posts:like' post.id %}">좋아요</a></div>
+            {% endif %}
             <form action="{% url 'posts:createcomment' post.id %}" method="POST">
             {% csrf_token %}
                 {{commentform}}
