@@ -100,4 +100,16 @@ def password_change(request):
     }
     return render(request,'accounts/update.html',context)
 
+
+def follow(request, user_pk):
+    user = get_object_or_404(User, pk=user_pk)
+    if request.user == user:
+        return redirect('accounts:index')
+    else:
+        if user.followers.filter(pk = request.user.id).exists():
+            user.followers.remove(request.user)
+        else:
+            user.followers.add(request.user)
         
+        
+        return redirect('accounts:index')
