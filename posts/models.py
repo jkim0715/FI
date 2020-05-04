@@ -26,7 +26,7 @@ class Post(models.Model):
     like_user = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_posts')
     created_at = models.DateTimeField(auto_now_add=True)
     created_at = models.DateTimeField(auto_now =True)
-    
+
     
 
 class Comment(models.Model):
