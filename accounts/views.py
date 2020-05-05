@@ -9,10 +9,12 @@ from django.contrib.auth import update_session_auth_hash
 
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
+from django.db.models import Count, Prefetch
 
 from .forms import CustomUserChangeForm, CustomUserCreationForm
 
-from posts.models import Post
+
+from posts.models import Post, Comment
 from posts.forms import CommentForm
 
 User = get_user_model() # 유저 Import
@@ -20,7 +22,20 @@ User = get_user_model() # 유저 Import
 # Create your views here.
 def index(request):
     accounts = User.objects.all()
-    posts = Post.objects.all()
+    # posts = Post.objects.all()
+    # posts = Post.objects.prefetch_related('comment_set').order_by('-pk')
+    # 2) 사용자 이름
+    # posts = Post.objects.select_related('user').order_by('-pk')
+    # 3) 댓글 목록
+    # posts = Post.objects.prefetch_related('comment_set').order_by('-pk')
+
+    posts = Post.objects.prefetch_related(
+        	Prefetch(
+        	    'comment_set',
+    		    queryset=Comment.objects.select_related('user')
+		    )
+    	).order_by('-pk')
+
     commentform = CommentForm()
     context ={
        'accounts': accounts,

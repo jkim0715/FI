@@ -139,8 +139,8 @@ AUTH_USER_MODEL='accounts.User'
 #Shell
 SHELL_PLUS = "ipython"
 
+
+#debug_tool
 INTERNAL_IPS = [
-
     '127.0.0.1',
-
 ]
